@@ -17,6 +17,9 @@ Crie um sistema de análise de vendas que leia arquivos CSV contendo informaçõ
 
 ### 💡 Recursos extras para desafiar você:
 🔹 Gerar gráficos com `Matplotlib` ou `Seaborn` (ex: vendas por mês, top 5 produtos)
+
 🔹 Criar um dashboard interativo com `Streamlit`
+
 🔹 Permitir filtros dinâmicos, como selecionar um período ou um vendedor específico
+
 🔹 Exportar os relatórios processados para `Excel` ou `PDF`
