@@ -5,11 +5,14 @@ Crie um sistema de análise de vendas que leia arquivos CSV contendo informaçõ
 
 ### 📌 Funcionalidades mínimas:
 ✅ Carregar um arquivo CSV com dados de vendas (exemplo: `vendas.csv`)
+
 ✅ Limpar e tratar os dados (remover valores nulos, formatar datas, corrigir colunas)
+
 ✅ Calcular estatísticas como:
    - Total de vendas
    - Ticket médio
    - Produto mais vendido
+     
 ✅ Criar um relatório simples no console mostrando os principais insights
 
 ### 💡 Recursos extras para desafiar você:
