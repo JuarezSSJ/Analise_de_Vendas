@@ -18,3 +18,17 @@ column_specific.head()
 #to_string() serve para visualizar toda a tabela
 print(vendas.to_string())
 
+#data correlations
+
+vendas.corr()#metodo vai ignonar colunas não numericas
+
+#estudando Replacing 
+print(vendas)
+new_df_teste = vendas
+new_df_teste.loc[1,"Quantidade"] = 3
+
+#Produtos mais vendidos
+prod_mais_vendidos = vendas[["Produto","Quantidade"]]
+resumo_vendas = prod_mais_vendidos.groupby("Produto")["Quantidade"].sum()
+resumo_vendas = resumo_vendas.sort_values(ascending=False)
+resumo_vendas
