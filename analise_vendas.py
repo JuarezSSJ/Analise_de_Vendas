@@ -71,3 +71,9 @@ tkm_tri_2025 = vendas[["Ano-Mes","Produto","Valor Total"]]
 tkm_tri_2025 = tkm_tri_2025.groupby(["Ano-Mes","Produto"])["Valor Total"].sum().reset_index()
 tkm_tri_2025 = tkm_tri_2025[(tkm_tri_2025["Ano-Mes"] >= "2025-01") & (tkm_tri_2025["Ano-Mes"] <= "2025-03")]
 tkm_tri_2025.sort_values(by = ["Ano-Mes","Valor Total"], ascending = [True,False])
+
+
+#loop para avaliar o trimestre dos produtos mais vendidos 
+for i in top_vendas.index:
+    prod_ava_trimestre = tkm_tri_2025[tkm_tri_2025["Produto"] == i]
+    print(prod_ava_trimestre)
