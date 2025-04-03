@@ -77,3 +77,26 @@ tkm_tri_2025.sort_values(by = ["Ano-Mes","Valor Total"], ascending = [True,False
 for i in top_vendas.index:
     prod_ava_trimestre = tkm_tri_2025[tkm_tri_2025["Produto"] == i]
     print(prod_ava_trimestre)
+
+#agrupei as vendas do trimestre 25 por produto e ordenei do maior para o menor, com isso posso avaliar o desempenho seguindo por valor total de venda
+top_vendas_tri25 = tkm_tri_2025.groupby("Produto")["Valor Total"].sum().sort_values(ascending=False).reset_index().head(5)
+top_vendas_tri25
+for i in top_vendas_tri25["Produto"]:
+    prod_ava_trimestre = tkm_tri_2025[tkm_tri_2025["Produto"] == i]
+    print(prod_ava_trimestre)
+
+#Comparativo 4 quartil de 24 x 1 Quartil 25
+vendas_por_produto_total = vendas[["Ano-Mes","Produto", "Quantidade", "Valor Total"]]
+#vendas_por_produto_total
+quarto_tri_24 = vendas_por_produto_total[(vendas_por_produto_total["Ano-Mes"] >= "2024-10") & (vendas_por_produto_total["Ano-Mes"] <= "2024-12")]
+#produto mais vendido no 4tri24
+prod_mais_vend_4tri24 = quarto_tri_24.groupby("Produto")[["Quantidade", "Valor Total"]].sum().reset_index()
+prod_mais_vend_4tri24.sort_values(by = "Quantidade", ascending=False).loc[0]
+print(prod_mais_vend_4tri24['Valor Total'].loc[0]/(quarto_tri_24["Valor Total"].sum())*100)
+#quarto_tri_24 = quarto_tri_24.groupby([])
+
+#Primeiro Tri de 25 - filtro e agrupar
+primeiro_tri_25 = vendas_por_produto_total[(vendas_por_produto_total["Ano-Mes"] >= "2025-01") & (vendas_por_produto_total["Ano-Mes"] <= "2025-03")]
+prod_mais_vend_1tri25 = primeiro_tri_25.groupby("Produto")[["Quantidade", "Valor Total"]].sum().reset_index()
+prod_mais_vend_1tri25.sort_values(by = "Quantidade", ascending=False).loc[0]
+#print(primeiro_tri_25)
