@@ -68,3 +68,6 @@ nome_top_vendedor = melhor_vendedor.index[0]
 valor_total_melhor_Vendedor = base_melhor_vendedor["Valor Total"]
 
 print(f"O melhor vendedor(a) foi: {nome_top_vendedor} com o total de vendas R${valor_total_melhor_Vendedor:.2f}")
+
+#top 3
+melhor_vendedor.head(3)
