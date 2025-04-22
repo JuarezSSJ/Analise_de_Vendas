@@ -27,3 +27,10 @@ prod_mais_vend_set_24 = vendas_set_24.iloc[0]
 prod_mais_vend_set_24
 
 #Produto que teve um maior valor total no acumulado do mês: Notbook
+
+#Qual o ticket médio das vendas?
+
+tkm = base[["Produto", "Quantidade", "Valor Total"]]
+tkm = tkm.groupby(["Produto"])[["Quantidade", "Valor Total"]].sum().reset_index()
+tkm["Tkm"] = tkm["Valor Total"]/tkm["Quantidade"]
+tkm.sort_values(by="Tkm", ascending=False)
