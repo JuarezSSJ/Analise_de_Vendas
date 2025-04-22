@@ -42,3 +42,19 @@ tkm.sort_values(by="Tkm", ascending=False).iloc[0].loc["Produto"]
 
 mais_vendidos = tkm.sort_values(by= "Quantidade", ascending=False)
 mais_vendidos[["Produto","Quantidade"]].head(3) #3 produtos mais vendidos
+
+#Qual foi o melhor mês de vendas? E o pior?
+vendas_mes = base[["Ano-Mes","Vendedor","Valor Total"]]
+vendas_mes = vendas_mes.groupby(["Ano-Mes"])[["Valor Total"]].sum().sort_values(by="Valor Total", ascending=False)
+#print(vendas_mes)
+#Melhor mês
+base_melhor_mes = vendas_mes.iloc[0]
+melhor_mes = vendas_mes.index[0]
+valor_melhor_mes = base_melhor_mes["Valor Total"]
+print(f"O mês com mais vendas foi: {melhor_mes} com o valor de R${valor_melhor_mes:,.2f}")
+
+#Pior mês
+base_pior_mes = vendas_mes.iloc[-1]
+pior_mes = vendas_mes.index[-1]
+valor_pior_mes = base_pior_mes["Valor Total"]
+print(f"O mês com o pior resultado em vendas foi: {pior_mes} com o valor de R${valor_pior_mes:,.2f}")
