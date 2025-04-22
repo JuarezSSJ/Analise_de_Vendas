@@ -34,3 +34,11 @@ tkm = base[["Produto", "Quantidade", "Valor Total"]]
 tkm = tkm.groupby(["Produto"])[["Quantidade", "Valor Total"]].sum().reset_index()
 tkm["Tkm"] = tkm["Valor Total"]/tkm["Quantidade"]
 tkm.sort_values(by="Tkm", ascending=False)
+
+#produto com maior Tkm
+tkm.sort_values(by="Tkm", ascending=False).iloc[0].loc["Produto"]
+
+#Quais são os produtos mais vendidos? - reutilizando o df tkm
+
+mais_vendidos = tkm.sort_values(by= "Quantidade", ascending=False)
+mais_vendidos[["Produto","Quantidade"]].head(3) #3 produtos mais vendidos
