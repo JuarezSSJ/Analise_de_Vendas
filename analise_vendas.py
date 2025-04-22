@@ -58,3 +58,13 @@ base_pior_mes = vendas_mes.iloc[-1]
 pior_mes = vendas_mes.index[-1]
 valor_pior_mes = base_pior_mes["Valor Total"]
 print(f"O mês com o pior resultado em vendas foi: {pior_mes} com o valor de R${valor_pior_mes:,.2f}")
+
+#Quem são os melhores vendedores?
+melhor_vendedor = base[["Ano-Mes","Vendedor","Valor Total"]]
+melhor_vendedor = melhor_vendedor.groupby(["Vendedor"])[["Valor Total"]].sum().sort_values(by="Valor Total", ascending=False)
+
+base_melhor_vendedor = melhor_vendedor.iloc[0]
+nome_top_vendedor = melhor_vendedor.index[0]
+valor_total_melhor_Vendedor = base_melhor_vendedor["Valor Total"]
+
+print(f"O melhor vendedor(a) foi: {nome_top_vendedor} com o total de vendas R${valor_total_melhor_Vendedor:.2f}")
