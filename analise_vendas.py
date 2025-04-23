@@ -71,3 +71,10 @@ print(f"O melhor vendedor(a) foi: {nome_top_vendedor} com o total de vendas R${v
 
 #top 3
 melhor_vendedor.head(3)
+
+#Existe sazonalidade nas vendas? (exemplo: vendas aumentam em dezembro?)
+sazonalidade = base[["Data","Produto","Categoria","Quantidade","Valor Total","Vendedor"]].copy()
+sazonalidade["Mes"] = sazonalidade["Data"].dt.month
+sazonalidade_Mes = sazonalidade.groupby(["Mes"])[["Quantidade","Valor Total"]].sum()
+sazonalidade_Mes["Media"] = sazonalidade_Mes["Valor Total"] / sazonalidade_Mes["Quantidade"] 
+sazonalidade_Mes
