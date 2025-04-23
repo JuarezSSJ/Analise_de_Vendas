@@ -78,3 +78,13 @@ sazonalidade["Mes"] = sazonalidade["Data"].dt.month
 sazonalidade_Mes = sazonalidade.groupby(["Mes"])[["Quantidade","Valor Total"]].sum()
 sazonalidade_Mes["Media"] = sazonalidade_Mes["Valor Total"] / sazonalidade_Mes["Quantidade"] 
 sazonalidade_Mes
+
+#organizando os meses por nome
+meses_pt = {
+    1: "Janeiro", 2: "Fevereiro", 3: "Março", 4: "Abril",
+    5: "Maio", 6: "Junho", 7: "Julho", 8: "Agosto",
+    9: "Setembro", 10: "Outubro", 11: "Novembro", 12: "Dezembro"
+}
+
+sazonalidade["Mes_nome"] = sazonalidade["Mes"].map(meses_pt)
+sazonalidade
