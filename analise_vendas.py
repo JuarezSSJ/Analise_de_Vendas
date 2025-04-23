@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+
 
 #importando base
 base = pd.read_csv("vendas.csv")
@@ -88,3 +90,23 @@ meses_pt = {
 
 sazonalidade["Mes_nome"] = sazonalidade["Mes"].map(meses_pt)
 sazonalidade
+
+sazonalidade_Mes = sazonalidade.groupby("Mes_nome")[["Quantidade", "Valor Total"]].sum()
+sazonalidade_Mes["Média"] = sazonalidade_Mes["Valor Total"] / sazonalidade_Mes["Quantidade"]
+
+# Ordenando na sequência correta dos meses
+ordem_meses = list(meses_pt.values())
+sazonalidade_Mes = sazonalidade_Mes.reindex(ordem_meses)
+sazonalidade_Mes
+
+plt.figure(figsize=(6, 4))
+plt.bar(sazonalidade_Mes.index, sazonalidade_Mes["Valor Total"], color="#4C72B0", label="Valor Total")
+plt.plot(sazonalidade_Mes.index, sazonalidade_Mes["Média"], color="#DD8452", marker="o", label="Média por unidade")
+plt.title("Sazonalidade nas Vendas por Mês")
+plt.xlabel("Mês")
+plt.ylabel("Valor em R$")
+plt.xticks(rotation=45)
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.show()
