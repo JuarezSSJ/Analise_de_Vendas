@@ -110,3 +110,54 @@ plt.legend()
 plt.grid(True)
 plt.tight_layout()
 plt.show()
+
+# Ver quanto cada produto vendeu em cada mês. - Utilizando forma de tabela dinamica do excel
+
+dinamic_produto_mes = pd.pivot_table(
+    data=sazonalidade,
+    index="Produto",
+    columns="Mes_nome",
+    values="Quantidade",
+    aggfunc="mean",
+    fill_value=0
+)
+
+dinamic_produto_mes.head()
+
+dinamic_prod_cat_mes = pd.pivot_table(
+    data=sazonalidade,
+    index=["Categoria", "Produto"],
+    columns=["Mes_nome"],
+    values=["Quantidade", "Valor Total"],
+    aggfunc=sum,
+    fill_value=0
+)
+dinamic_prod_cat_mes.head()
+
+
+# Dinamica com sum e mean
+
+dinamic_sum_mean = pd.pivot_table(
+    data=sazonalidade,
+    index=["Categoria", "Produto"],
+    columns="Mes_nome",
+    values=["Quantidade", "Valor Total"],
+    aggfunc={"Quantidade":"sum","Valor Total":"mean"},
+    fill_value=0
+)
+
+dinamic_sum_mean.head()
+
+dinamic_sazonalidade = pd.pivot_table(
+    data=sazonalidade,
+    index="Produto",
+    columns="Mes_nome",
+    values=["Quantidade","Valor Total"],
+    aggfunc={"Quantidade":"sum","Valor Total":"mean"},
+    fill_value=0,
+    margins=True
+)
+
+dinamic_sazonalidade = dinamic_sazonalidade.sort_values(by=("Quantidade","All"), ascending=False)
+
+dinamic_sazonalidade.head()
