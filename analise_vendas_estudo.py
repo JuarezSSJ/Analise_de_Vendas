@@ -104,7 +104,7 @@ prod_mais_vend_1tri25.sort_values(by = "Quantidade", ascending=False).loc[0]
 #Qual foi o total de vendas em um determinado período?
 
 #Setembro
-vendas_set_24 = base[["Ano-Mes", "Produto", "Quantidade", "Preço Unitário", "Valor Total"]]
+vendas_set_24 = vendas[["Ano-Mes", "Produto", "Quantidade", "Preço Unitário", "Valor Total"]]
 vendas_set_24 = vendas_set_24.groupby(["Ano-Mes", "Produto"])[["Quantidade", "Preço Unitário", "Valor Total"]].sum().reset_index()
 vendas_set_24 = vendas_set_24[(vendas_set_24["Ano-Mes"] == "2024-09	")].sort_values(by = "Valor Total", ascending=False)
 vendas_set_24
